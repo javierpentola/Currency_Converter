@@ -1,131 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
-    <link rel="stylesheet" href="https://unpkg.com/tuicss/dist/tuicss.min.css">
-    <style>
-        body {
-            font-family: 'DOS', monospace;
-            background-color: black;
-            color: green;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            padding: 20px;
-            border: 2px solid green;
-            width: 300px;
-        }
-        .tui-input, .tui-select {
-            width: calc(100% - 22px);
-            margin-bottom: 10px;
-        }
-        .tui-btn {
-            display: block;
-            width: 100%;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
-    </style>
-</head>
-<body>
-    <div class="container tui-panel tui-panel-border">
-        <h1 class="tui-title tui-title-center">Currency Converter</h1>
-        <div>
-            <label for="amount" class="tui-label">Amount:</label>
-            <input type="text" id="amount" class="tui-input" placeholder="Enter amount">
-        </div>
-        <div>
-            <label for="from-currency" class="tui-label">From (Currency code):</label>
-            <select id="from-currency" class="tui-select">
-                <option value="USD">USD - US Dollar</option>
-                <option value="EUR">EUR - Euro</option>
-                <option value="GBP">GBP - British Pound</option>
-                <option value="JPY">JPY - Japanese Yen</option>
-                <option value="AUD">AUD - Australian Dollar</option>
-                <option value="CAD">CAD - Canadian Dollar</option>
-                <option value="CHF">CHF - Swiss Franc</option>
-                <option value="CNY">CNY - Chinese Yuan</option>
-                <option value="SEK">SEK - Swedish Krona</option>
-                <option value="NZD">NZD - New Zealand Dollar</option>
-                <option value="MXN">MXN - Mexican Peso</option>
-                <option value="SGD">SGD - Singapore Dollar</option>
-                <option value="HKD">HKD - Hong Kong Dollar</option>
-                <option value="NOK">NOK - Norwegian Krone</option>
-                <option value="KRW">KRW - South Korean Won</option>
-                <option value="TRY">TRY - Turkish Lira</option>
-                <option value="RUB">RUB - Russian Ruble</option>
-                <option value="INR">INR - Indian Rupee</option>
-                <option value="BRL">BRL - Brazilian Real</option>
-                <option value="ZAR">ZAR - South African Rand</option>
-            </select>
-        </div>
-        <div>
-            <label for="to-currency" class="tui-label">To (Currency code):</label>
-            <select id="to-currency" class="tui-select">
-                <option value="USD">USD - US Dollar</option>
-                <option value="EUR">EUR - Euro</option>
-                <option value="GBP">GBP - British Pound</option>
-                <option value="JPY">JPY - Japanese Yen</option>
-                <option value="AUD">AUD - Australian Dollar</option>
-                <option value="CAD">CAD - Canadian Dollar</option>
-                <option value="CHF">CHF - Swiss Franc</option>
-                <option value="CNY">CNY - Chinese Yuan</option>
-                <option value="SEK">SEK - Swedish Krona</option>
-                <option value="NZD">NZD - New Zealand Dollar</option>
-                <option value="MXN">MXN - Mexican Peso</option>
-                <option value="SGD">SGD - Singapore Dollar</option>
-                <option value="HKD">HKD - Hong Kong Dollar</option>
-                <option value="NOK">NOK - Norwegian Krone</option>
-                <option value="KRW">KRW - South Korean Won</option>
-                <option value="TRY">TRY - Turkish Lira</option>
-                <option value="RUB">RUB - Russian Ruble</option>
-                <option value="INR">INR - Indian Rupee</option>
-                <option value="BRL">BRL - Brazilian Real</option>
-                <option value="ZAR">ZAR - South African Rand</option>
-            </select>
-        </div>
-        <button class="tui-btn tui-btn-primary" onclick="convertCurrency()">Convert</button>
-        <div id="result" class="result tui-panel tui-panel-border"></div>
-    </div>
+### Project Documentation
 
-    <script>
-        async function convertCurrency() {
-            const amount = document.getElementById('amount').value;
-            const fromCurrency = document.getElementById('from-currency').value;
-            const toCurrency = document.getElementById('to-currency').value;
+---
 
-            if (!amount || !fromCurrency || !toCurrency) {
-                alert('Please fill in all fields.');
-                return;
-            }
+#### **Project Overview**
 
-            try {
-                const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
-                const data = await response.json();
+**Project Name:** Currency Converter
 
-                if (data.result === 'success') {
-                    const rate = data.rates[toCurrency];
-                    if (rate) {
-                        const convertedAmount = (amount * rate).toFixed(2);
-                        document.getElementById('result').innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-                    } else {
-                        document.getElementById('result').innerText = `Currency code not found: ${toCurrency}`;
-                    }
-                } else {
-                    document.getElementById('result').innerText = 'Error fetching exchange rate.';
-                }
-            } catch (error) {
-                document.getElementById('result').innerText = 'Error connecting to the API.';
-            }
-        }
-    </script>
-</body>
-</html>
+**Technologies Used:**
+- **HTML:** Provides the structure and layout of the web page.
+- **CSS:** Utilizes TuiCss for styling, giving the application a retro MS-DOS-like appearance.
+- **JavaScript:** Implements client-side logic to handle currency conversion and API requests.
+- **ExchangeRate-API:** Supplies exchange rate data without the need for API keys.
+
+**Description:** This project creates a web-based currency converter. It uses HTML for structure, CSS (with TuiCss) for styling, JavaScript for client-side functionality, and the ExchangeRate-API to retrieve current exchange rates. The application allows users to convert monetary amounts between selected currencies from a list of 20 options.
+
+---
+
+### **Technologies Usage**
+
+1. **HTML:**
+   - **Usage:** Defines the structure and content of the web application.
+   - **Files:** Inline within the single HTML file.
+
+2. **CSS:**
+   - **Usage:** Styles the application to give it a retro MS-DOS appearance using TuiCss.
+   - **Files:** Inline within the single HTML file, linked to TuiCss CDN.
+
+3. **JavaScript:**
+   - **Usage:** Handles user input, makes API requests, and updates the DOM with conversion results.
+   - **Files:** Inline within the single HTML file.
+
+4. **ExchangeRate-API:**
+   - **Usage:** Provides exchange rate data for currency conversion.
+   - **Files:** Accessed via JavaScript fetch requests.
+
+---
+
+### **Setup and Usage Instructions**
+
+To set up and use the project after downloading the code, follow these steps:
+
+1. **Clone the Repository:**
+   - Use `git clone` to clone the repository to your local machine.
+   ```bash
+   git clone <repository_url>
+   ```
+
+2. **Navigate to the Project Directory:**
+   - Change your working directory to the project folder.
+   ```bash
+   cd <project_directory>
+   ```
+
+3. **Install Dependencies:**
+   - This project does not have external dependencies to install.
+
+4. **Setup Specific Instructions:**
+   - No additional setup is required for this project.
+
+5. **Run the Application:**
+   - Open the `index.html` file in a web browser.
+
+6. **Access the Application:**
+   - Open a web browser and navigate to the `index.html` file location. The application will be ready to use.
+
+---
+
+### **File Descriptions**
+
+1. **`index.html`:**
+   - Contains the complete structure, styling, and scripting for the currency converter application. It uses HTML for structure, inline CSS for styling with TuiCss, and JavaScript for functionality.
+
+---
+
+### **Project Functionality**
+
+1. **Currency Selection:**
+   - **Description:** Allows users to select the currencies to convert from and to using dropdown lists.
+   - **Usage:** Select the desired currencies from the "From" and "To" dropdown lists.
+
+2. **Amount Input:**
+   - **Description:** Users can enter the amount they wish to convert in a text input field.
+   - **Usage:** Enter the numeric value in the "Amount" text input field.
+
+3. **Conversion Result:**
+   - **Description:** Displays the converted amount after fetching and calculating the exchange rate.
+   - **Usage:** Click the "Convert" button to perform the conversion and see the result in the "Result" section.
